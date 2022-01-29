@@ -72,7 +72,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.VcpkgAction = exports.VCPKG_ADDITIONAL_CACHED_PATHS_STATE = exports.VCPKG_ROOT_STATE = exports.VCPKG_ADDED_CACHEKEY_STATE = exports.VCPKG_DO_NOT_CACHE_STATE = exports.VCPKG_KEY_CACHE_HIT_STATE = exports.VCPKG_CACHE_COMPUTEDKEY_STATE = exports.logCollectionRegExpsInput = exports.appendedCacheKeyInput = exports.vcpkgUrlInput = exports.doNotUpdateVcpkgInput = exports.vcpkgCommitIdInput = exports.vcpkgDirectoryInput = exports.runVcpkgFormatStringInput = exports.runVcpkgInstallInput = exports.vcpkgJsonIgnoresInput = exports.vcpkgJsonGlobInput = exports.doNotCacheOnWorkflowFailureInput = exports.jobStatusInput = exports.binaryCachePathInput = exports.additionalCachedPathsInput = exports.doNotCacheInput = void 0;
+exports.VcpkgAction = exports.VCPKG_ADDITIONAL_CACHED_PATHS_STATE = exports.VCPKG_ROOT_STATE = exports.VCPKG_ADDED_CACHEKEY_STATE = exports.VCPKG_DO_NOT_CACHE_STATE = exports.VCPKG_KEY_CACHE_HIT_STATE = exports.VCPKG_CACHE_COMPUTEDKEY_STATE = exports.logCollectionRegExpsInput = exports.appendedCacheKeyInput = exports.vcpkgUrlInput = exports.doNotUpdateVcpkgInput = exports.vcpkgCommitIdInput = exports.vcpkgDirectoryInput = exports.runVcpkgFormatStringInput = exports.runVcpkgInstallInput = exports.vcpkgJsonIgnoresInput = exports.vcpkgJsonGlobInput = exports.doNotCacheOnWorkflowFailureInput = exports.binaryCachePathInput = exports.additionalCachedPathsInput = exports.doNotCacheInput = void 0;
 const path = __nccwpck_require__(5622);
 const cache = __nccwpck_require__(7799);
 const runvcpkglib = __nccwpck_require__(4393);
@@ -81,7 +81,6 @@ const vcpkgutil = __nccwpck_require__(4534);
 exports.doNotCacheInput = 'DONOTCACHE';
 exports.additionalCachedPathsInput = 'ADDITIONALCACHEDPATHS';
 exports.binaryCachePathInput = 'BINARYCACHEPATH';
-exports.jobStatusInput = 'JOBSTATUS';
 exports.doNotCacheOnWorkflowFailureInput = 'DONOTCACHEONWORKFLOWFAILURE';
 exports.vcpkgJsonGlobInput = 'VCPKGJSONGLOB';
 exports.vcpkgJsonIgnoresInput = "VCPKGJSONIGNORES";

@@ -12,7 +12,6 @@ import * as vcpkgutil from './vcpkg-utils'
 export const doNotCacheInput = 'DONOTCACHE';
 export const additionalCachedPathsInput = 'ADDITIONALCACHEDPATHS';
 export const binaryCachePathInput = 'BINARYCACHEPATH';
-export const jobStatusInput = 'JOBSTATUS';
 export const doNotCacheOnWorkflowFailureInput = 'DONOTCACHEONWORKFLOWFAILURE';
 export const vcpkgJsonGlobInput = 'VCPKGJSONGLOB';
 export const vcpkgJsonIgnoresInput = "VCPKGJSONIGNORES";
