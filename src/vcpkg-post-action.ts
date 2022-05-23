@@ -3,7 +3,7 @@
 // Released under the term specified in file LICENSE.txt
 // SPDX short identifier: MIT
 
-import * as baseutillib from '@lukka/base-util-lib'
+import * as baseutillib from '@xlauko/base-util-lib'
 import * as vcpkgutil from './vcpkg-utils'
 import * as vcpkgaction from './vcpkg-action'
 

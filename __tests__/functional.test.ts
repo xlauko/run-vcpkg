@@ -5,9 +5,9 @@
 import * as process from 'process'
 import * as cp from 'child_process'
 import * as path from 'path'
-import { ActionLib } from '@lukka/action-lib';
-import { BaseUtilLib } from '@lukka/base-util-lib';
-import * as runvcpkglib from "@lukka/run-vcpkg-lib"
+import { ActionLib } from '@xlauko/action-lib';
+import { BaseUtilLib } from '@xlauko/base-util-lib';
+import * as runvcpkglib from "@xlauko/run-vcpkg-lib"
 
 jest.setTimeout(800 * 1000);
 
@@ -101,7 +101,7 @@ describe('run-vcpkg functional tests', () => {
         await actionLib.rmRF(await runvcpkglib.getDefaultVcpkgDirectory(baseLibUtils.baseLib));
         await actionLib.rmRF(await runvcpkglib.getDefaultVcpkgInstallDirectory(baseLibUtils.baseLib));
         await actionLib.rmRF(await runvcpkglib.getDefaultVcpkgCacheDirectory(baseLibUtils.baseLib));
-        
+
         process.env.INPUT_VCPKGGITCOMMITID = "b86c0c35b88e2bf3557ff49dc831689c2f085090";
         process.env.INPUT_RUNVCPKGINSTALL = "true";
         process.env.INPUT_RUNVCPKGFORMATSTRING = runvcpkglib.VcpkgRunner.VCPKGINSTALLCMDDEFAULT;

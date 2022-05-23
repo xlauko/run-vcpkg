@@ -4,8 +4,8 @@
 
 import * as path from 'path'
 import * as cache from '@actions/cache'
-import * as baseutillib from '@lukka/base-util-lib'
-import * as runvcpkglib from '@lukka/run-vcpkg-lib'
+import * as baseutillib from '@xlauko/base-util-lib'
+import * as runvcpkglib from '@xlauko/run-vcpkg-lib'
 import * as vcpkgutil from './vcpkg-utils'
 
 // Input names for run-vcpkg only.
@@ -20,6 +20,8 @@ export const vcpkgDirectoryInput = "VCPKGDIRECTORY";
 export const vcpkgCommitIdInput = "VCPKGGITCOMMITID";
 export const doNotUpdateVcpkgInput = "DONOTUPDATEVCPKG";
 export const vcpkgUrlInput = "VCPKGGITURL";
+export const ports = 'PORTS';
+export const features = 'FEATURES';
 /**
  * The input's name for additional content for the cache key.
  */
@@ -49,6 +51,8 @@ export class VcpkgAction {
   private readonly userProvidedCommitId: string | null;
   private readonly doNotUpdateVcpkg: boolean;
   private readonly vcpkgUrl: string | null;
+  private readonly ports: string;
+  private readonly features: string[];
   private readonly vcpkgCommitId: string | null;
   private readonly logCollectionRegExps: string[];
   private readonly binaryCachePath: string | null;
@@ -69,6 +73,8 @@ export class VcpkgAction {
     this.doNotCache = baseUtilLib.baseLib.getBoolInput(doNotCacheInput, false) ?? false;
     this.doNotUpdateVcpkg = baseUtilLib.baseLib.getBoolInput(doNotUpdateVcpkgInput, false) ?? false;
     this.vcpkgUrl = baseUtilLib.baseLib.getInput(vcpkgUrlInput, false) ?? VcpkgAction.DEFAULTVCPKGURL;
+    this.ports = baseUtilLib.baseLib.getInput(ports, false) ?? null;
+    this.features = baseUtilLib.baseLib.getInput(features, false) ?? null;
     this.vcpkgCommitId = baseUtilLib.baseLib.getInput(vcpkgCommitIdInput, false) ?? null;
     this.logCollectionRegExps = baseUtilLib.baseLib.getDelimitedInput(logCollectionRegExpsInput, ';', false) ?? [];
     this.binaryCachePath = baseUtilLib.baseLib.getPathInput(binaryCachePathInput, false, true) ?? null;
@@ -109,13 +115,14 @@ export class VcpkgAction {
     let keys: baseutillib.KeySet | null = null;
     let vcpkgJsonFilePath: string | null = null;
     await this.baseUtilLib.wrapOp('Compute vcpkg cache key', async () => {
+      // TODO hash ports and features
       const [vcpkgJsonFile, vcpkgJsonHash, vcpkgConfigurationJsonHash] = await vcpkgutil.Utils.getVcpkgJsonHash(this.baseUtilLib, this.vcpkgJsonGlob, this.vcpkgJsonIgnores);
       keys = await vcpkgutil.Utils.computeCacheKeys(
-        this.baseUtilLib, 
-        vcpkgJsonHash, 
-        vcpkgConfigurationJsonHash, 
-        this.vcpkgRootDir as string, 
-        this.userProvidedCommitId, 
+        this.baseUtilLib,
+        vcpkgJsonHash,
+        vcpkgConfigurationJsonHash,
+        this.vcpkgRootDir as string,
+        this.userProvidedCommitId,
         this.appendedCacheKey);
 
       if (keys) {

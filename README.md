@@ -1,6 +1,6 @@
-[![Action Status](https://github.com/lukka/run-vcpkg/workflows/build-test/badge.svg)](https://github.com/lukka/run-vcpkg/actions)
+[![Action Status](https://github.com/xlauko/run-vcpkg/workflows/build-test/badge.svg)](https://github.com/xlauko/run-vcpkg/actions)
 
-[![Coverage Status](https://coveralls.io/repos/github/lukka/run-vcpkg/badge.svg?branch=main)](https://coveralls.io/github/lukka/run-vcpkg?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/xlauko/run-vcpkg/badge.svg?branch=main)](https://coveralls.io/github/xlauko/run-vcpkg?branch=main)
 
 - [Quickstart with a C++ project template](#quickstart-with-a-c-project-template)
 - [The **run-vcpkg@v10.2** action for caching artifacts and using vcpkg with manifest files on GitHub workflows](#the-run-vcpkgv102-action-for-caching-artifacts-and-using-vcpkg-with-manifest-files-on-github-workflows)
@@ -17,7 +17,7 @@
 
 # Quickstart with a C++ project template
 
-Take a look at this [C++ project template](https://github.com/lukka/CppCMakeVcpkgTemplate) that applies all the following instructions, but also shows how to create a __pure__ workflow without using special GitHub action that you cannot run locally on your development machine, but directly using the tools (`CMake`, `Ninja`, `vcpkg`, `C++` compilers) you already use daily.
+Take a look at this [C++ project template](https://github.com/xlauko/CppCMakeVcpkgTemplate) that applies all the following instructions, but also shows how to create a __pure__ workflow without using special GitHub action that you cannot run locally on your development machine, but directly using the tools (`CMake`, `Ninja`, `vcpkg`, `C++` compilers) you already use daily.
 
 # [The **run-vcpkg@v10.2** action for caching artifacts and using vcpkg with manifest files on GitHub workflows](https://github.com/marketplace/actions/run-vcpkg)
 
@@ -50,16 +50,16 @@ jobs:
       #-uses: actions/cache@v1   <===== YOU DO NOT NEED THIS!
 
       # Install latest CMake.
-      - uses: lukka/get-cmake@latest
+      - uses: xlauko/get-cmake@latest
       # Or pin to a specific CMake version:
-      # lukka/get-cmake@v3.21.2
+      # xlauko/get-cmake@v3.21.2
 
       # Restore from cache the previously built ports. If a "cache miss" occurs,
       # then vcpkg is bootstrapped. Since a the vcpkg.json is being used later on
       # to install the packages when `run-cmake` runs, no packages are installed at
       # this time.
       - name: Restore artifacts, or setup vcpkg (do not install any package)
-        uses: lukka/run-vcpkg@v10
+        uses: xlauko/run-vcpkg@v10
         #with:
           # This is the default location of the directory containing vcpkg sources.
           # Change it to the right location if needed.
@@ -82,7 +82,7 @@ jobs:
           # runVcpkgInstall: true
 
       - name: Run CMake consuming CMakePreset.json and vcpkg.json by mean of vcpkg.
-        uses: lukka/run-cmake@v10
+        uses: xlauko/run-cmake@v10
         with:
           # This is the default path to the CMakeLists.txt along side the
           # CMakePresets.json. Change if you need have CMakeLists.txt and CMakePresets.json
@@ -98,23 +98,23 @@ jobs:
           buildPreset: 'ninja-multi-vcpkg'
 
     #env:
-    #  By default the action disables vcpkg's telemetry by defining VCPKG_DISABLE_METRICS. 
+    #  By default the action disables vcpkg's telemetry by defining VCPKG_DISABLE_METRICS.
     #  This behavior can be disabled by defining `VCPKG_ENABLE_METRICS` as follows.
-    #  VCPKG_ENABLE_METRICS: 1 
+    #  VCPKG_ENABLE_METRICS: 1
     #
     #  [OPTIONAL] Define the vcpkg's triplet you want to enforce, otherwise the default one
     #  for the hosting system will be automatically choosen (x64 is the default on all platforms,
     #  e.g. `x64-osx`).
-    #  VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }} 
+    #  VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
 ```
 
 ## Action reference: all input/output parameters
 
-Description of all input parameters: [action.yml](https://github.com/lukka/run-vcpkg/blob/main/action.yml)
+Description of all input parameters: [action.yml](https://github.com/xlauko/run-vcpkg/blob/main/action.yml)
 
 ## Flowchart
 
-Flowchart with related input in [action.yml](https://github.com/lukka/run-vcpkg/blob/main/action.yml) which let customize the flow.
+Flowchart with related input in [action.yml](https://github.com/xlauko/run-vcpkg/blob/main/action.yml) which let customize the flow.
 
 ```
 ┌──────────────────────────┐
@@ -163,7 +163,7 @@ Flowchart with related input in [action.yml](https://github.com/lukka/run-vcpkg/
  │ been located            │ │   Environment variables:
  └────────────┬────────────┘ │   - `VCPKG_DEFAULT_TRIPLET` is used. If not yet
               │              │     set, it is set to the current platform.
-              │              │   - `VCPKG_INSTALLED_DIR` is used as value for 
+              │              │   - `VCPKG_INSTALLED_DIR` is used as value for
               │              │     `--x-install-root` when running `vcpkg install`.
               │              │     Check out the `runVcpkgFormatString` input.
               ▼              │
@@ -198,7 +198,7 @@ Flowchart with related input in [action.yml](https://github.com/lukka/run-vcpkg/
 ### Use vcpkg's vcpkg.json file to specify the dependencies
 
 The [vcpkg.json](https://github.com/microsoft/vcpkg/blob/master/docs/specifications/manifests.md) is a manifest file that declaratively specifies the dependencies to be installed.
-The file is being used automatically by running CMake (e.g. by using [run-cmake](https://github.com/lukka/run-cmake)) when:
+The file is being used automatically by running CMake (e.g. by using [run-cmake](https://github.com/xlauko/run-cmake)) when:
  - starting CMake with the `vcpkg.cmake` toolchain file.
  - the root CMake source directory contains a [vcpkg.json](https://github.com/microsoft/vcpkg/blob/master/docs/specifications/manifests.md) file.
 
@@ -215,10 +215,10 @@ _Checkmarks_ indicates whether the samples "uses" or specifies the thing in the 
 
 |workflow link|`vcpkg` as submodule|explicit triplet|`vcpkg` toolchain|`CMake`'s Presets|`Ninja`|`run-vcpkg` runs vcpkg|`CMake` runs `vcpkg`
 |:-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|[link](https://github.com/lukka/CppBuildTasks-Validation/blob/v10/.github/workflows/hosted-ninja-vcpkg_submod.yml)|✅|❌|✅|✅|✅|❌|✅|
-|[link](https://github.com/lukka/CppBuildTasks-Validation/blob/v10/.github/workflows/hosted-ninja-vcpkg.yml)|❌|❌|✅|✅|✅|❌|✅
-|[link](https://github.com/lukka/CppBuildTasks-Validation/blob/v10/.github/workflows/hosted-ninja-vcpkg-install.yml)|❌|❌|✅|✅|✅|✅|❌|
-|[link](https://github.com/lukka/CppBuildTasks-Validation/blob/v10/.github/workflows/hosted-ninja-vcpkg_submod-triplet.yml)|✅|✅|✅|✅|✅|❌|✅
+|[link](https://github.com/xlauko/CppBuildTasks-Validation/blob/v10/.github/workflows/hosted-ninja-vcpkg_submod.yml)|✅|❌|✅|✅|✅|❌|✅|
+|[link](https://github.com/xlauko/CppBuildTasks-Validation/blob/v10/.github/workflows/hosted-ninja-vcpkg.yml)|❌|❌|✅|✅|✅|❌|✅
+|[link](https://github.com/xlauko/CppBuildTasks-Validation/blob/v10/.github/workflows/hosted-ninja-vcpkg-install.yml)|❌|❌|✅|✅|✅|✅|❌|
+|[link](https://github.com/xlauko/CppBuildTasks-Validation/blob/v10/.github/workflows/hosted-ninja-vcpkg_submod-triplet.yml)|✅|✅|✅|✅|✅|❌|✅
 <br>
 
 # License
@@ -229,7 +229,8 @@ Copyright © 2019-2020-2021-2022 Luca Cappa
 
 # Disclaimer
 
-The software is provided as is, there is no warranty of any kind. All users are encouraged to improve the [source code](https://github.com/lukka/run-vcpkg) with fixes and new features.
+The software is provided as is, there is no warranty of any kind. All users are encouraged to improve the [source code](https://github.com/xlauko/run-vcpkg) with fixes and new features.
+
 
 # Contributing
 

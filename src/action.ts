@@ -2,8 +2,8 @@
 // Released under the term specified in file LICENSE.txt
 // SPDX short identifier: MIT
 
-import * as actionlib from '@lukka/action-lib'
-import * as baseUtilLib from '@lukka/base-util-lib'
+import * as actionlib from '@xlauko/action-lib'
+import * as baseUtilLib from '@xlauko/base-util-lib'
 import * as core from '@actions/core';
 import * as vcpkgAction from './vcpkg-action';
 

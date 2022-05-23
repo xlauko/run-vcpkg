@@ -2,18 +2,18 @@ import * as process from 'process'
 import * as fs from 'fs'
 import * as os from 'os'
 import * as vcpkgaction from '../src/vcpkg-action'
-import * as actionlib from '@lukka/action-lib'
+import * as actionlib from '@xlauko/action-lib'
 import * as cache from '@actions/cache'
-import * as runvcpkglib from '@lukka/run-vcpkg-lib'
+import * as runvcpkglib from '@xlauko/run-vcpkg-lib'
 import * as path from 'path'
-import * as baseutil from '@lukka/base-util-lib'
+import * as baseutil from '@xlauko/base-util-lib'
 import * as vcpkgutils from '../src/vcpkg-utils'
 import * as core from '@actions/core'
 import * as vcpkgpostaction from '../src/vcpkg-post-action'
 
 jest.setTimeout(15 * 1000);
 // Mocks entire action-lib module.
-//??jest.mock("@lukka/action-lib");
+//??jest.mock("@xlauko/action-lib");
 const baseUtil = new baseutil.BaseUtilLib(new actionlib.ActionLib());
 let warningMock: jest.SpyInstance;
 let errorMock: jest.SpyInstance;
@@ -27,7 +27,7 @@ let getVcpkgCacheDirMock: jest.SpyInstance;
 let getVcpkgDirMock: jest.SpyInstance;
 
 // Mocks entire run-vcpkg-lib module.
-jest.mock("@lukka/run-vcpkg-lib");
+jest.mock("@xlauko/run-vcpkg-lib");
 
 function clearInputs(): void {
     Object.keys(process.env)

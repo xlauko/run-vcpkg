@@ -4,8 +4,8 @@
 
 import * as core from '@actions/core'
 import * as vcpkgaction from './vcpkg-action'
-import * as actionlib from '@lukka/action-lib'
-import * as baseutillib from '@lukka/base-util-lib'
+import * as actionlib from '@xlauko/action-lib'
+import * as baseutillib from '@xlauko/base-util-lib'
 import * as vcpkgutil from './vcpkg-utils'
 import * as vcpkgpostaction from './vcpkg-post-action'
 

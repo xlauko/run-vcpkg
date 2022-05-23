@@ -4,9 +4,9 @@
 
 import * as path from 'path'
 import * as fs from 'fs'
-import * as runvcpkglib from '@lukka/run-vcpkg-lib'
-import * as baselib from '@lukka/base-lib'
-import * as baseutillib from '@lukka/base-util-lib'
+import * as runvcpkglib from '@xlauko/run-vcpkg-lib'
+import * as baselib from '@xlauko/base-lib'
+import * as baseutillib from '@xlauko/base-util-lib'
 import * as cache from '@actions/cache'
 import * as vcpkgaction from './vcpkg-action'
 
@@ -60,6 +60,7 @@ export class Utils {
     return [id, isSubmodule];
   }
 
+  // TODO hash features and ports
   public static async getVcpkgJsonHash(baseUtil: baseutillib.BaseUtilLib, vcpkgJsonGlob: string, vcpkgJsonIgnores: string[]): Promise<[string | null, string | null, string | null]> {
     try {
       const [vcpkgJsonPath, vcpkgJsonHash] = await baseUtil.getFileHash(vcpkgJsonGlob, vcpkgJsonIgnores);
